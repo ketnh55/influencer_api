@@ -2,57 +2,42 @@
 
 namespace App\Http\Controllers\api;
 
-use Illuminate\Http\Request;
+use App\Http\Services\UserSocialServices;
 use App\Http\Controllers\Controller;
 use JWTFactory;
 use JWTAuth;
 use App\User;
 use Validator;
 use Response;
+use App\Http\Requests\UserRegisterRequest;
 
 class LoginAPIController extends Controller
 {
+
+    protected $socialAccountServices;
+
     /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * LoginAPIController constructor.
+     * @param UserSocialServices $socialAccountServices
      */
-    public function __invoke(Request $request)
+    public function __construct(UserSocialServices $socialAccountServices)
     {
-        //
+        $this->socialAccountServices = $socialAccountServices;
     }
 
-    public function user_login_api()
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function user_login_api(UserRegisterRequest $request)
     {
-        $customClaims = ['sub' => 'bar', 'aud' => 'bob'];
-
-        $payload = JWTFactory::make($customClaims);
-
-        $token = JWTAuth::encode($payload)->get();
-
-        return response()->json(compact('token'));
-    }
-
-    public function user_register_api(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|string|email|max:255|unique:users',
-            'name' => 'required',
-            'password'=> 'required'
-        ]);
-        if ($validator->fails()) {
-            return response()->json($validator->errors());
+        $validated = $request->validated();
+        if (!$validated) {
+            return response()->json($validated->errors());
         }
-        User::create([
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'password' => $request->get('password'),
-            'id' => rand(0, 1000)
-        ]);
-        $user = User::first();
-        $token = JWTAuth::fromUser($user);
 
-        return Response::json(compact('token'));
+        $user = $this->socialAccountServices->createOrGetSocailUser($request);
+        $token = JWTAuth::fromUser($user);
+        return response()->json([compact('token'), compact('user')]);
     }
 }
