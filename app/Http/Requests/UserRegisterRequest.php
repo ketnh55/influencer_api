@@ -30,10 +30,11 @@ class UserRegisterRequest extends FormRequest
             //
             'email' => 'required|string|email|max:255|unique:users',
             'name' => 'required',
-            'social_type' => 'required',
+            'social_type' => 'required|numeric|min:1|max:4',
             'link' => 'required',
             'access_token' => 'required',
-            'account_id' => 'required'
+            'account_id' => 'required',
+            'user_type' => 'required|numeric|min:1|max:2'
         ];
     }
 }

@@ -28,21 +28,23 @@ class UserSocialServices
         {
             //var_dump(Hash::make($request->get('email') + $request->get('name')));
             //if not
-            $user = new User([
+            $user = User::create([
                 'email'=>$request->get('email'),
                 'username'=>$request->get('name'),
-                'password'=>Hash::make($request->get('email').$request->get('name'))
+                'password'=>Hash::make($request->get('email').$request->get('name')),
+                'user_type' => $request->get('user_type')
             ]);
             // create social user with main user
             $acc = new UserSocial([
-                'id' => $request->get('id'),
+                'flatform_id' => $request->get('account_id'),
                 'social_type' => $request->get('social_type'),
                 'access_token' => $request->get('token'),
                 'email' => $request->get('email'),
                 'link' => $request->get('link'),
             ]);
             $acc->user()->associate($user);
-            //$acc->save();
+            $acc->save();
+            $user = User::with('user_socials')->findOrFail($user->id);
         }
 
         return $user;
