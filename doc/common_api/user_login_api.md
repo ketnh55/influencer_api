@@ -49,6 +49,7 @@ user_type|1: influencer, 2: marketer|-|string|-|true
         - social_type: '2',
         - sns_access_token: '3xyzljfdsajldsjaf2354%fdajasdf.fdaljkfda',
         - link: 'https://twitter.com/Cuong_dep_trai89625808'
+        - user_type: '2'
         
 - Url : *http://domain_name/api/v1/user_login_api/*
 
