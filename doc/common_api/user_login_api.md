@@ -32,6 +32,7 @@ sns_account_id|sns_account_id|-|string|-|true
 social_type|1:facebook, 2:twitter, 3:instagram, 4:youtube|-|int|from 1 to 4|true
 sns_access_token|access token of sns|-|string|-|true
 link|link to sns page|-|string|-|true
+user_type|1: influencer, 2: marketer|-|string|-|true
 
 ## 5.Example API Call
 
