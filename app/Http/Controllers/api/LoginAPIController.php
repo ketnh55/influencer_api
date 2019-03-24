@@ -9,6 +9,7 @@ use JWTAuth;
 use App\User;
 use Validator;
 use Response;
+use Illuminate\Http\Request;
 use App\Http\Requests\UserRegisterRequest;
 
 class LoginAPIController extends Controller
@@ -39,5 +40,11 @@ class LoginAPIController extends Controller
         $user = $this->socialAccountServices->createOrGetSocailUser($request);
         $token = JWTAuth::fromUser($user);
         return response()->json([compact('token'), compact('user')]);
+    }
+
+    public function get_user_info(Request $request)
+    {
+        $user = JWTAuth::toUser($request->token);
+        return response()->json(['data' => $user]);
     }
 }

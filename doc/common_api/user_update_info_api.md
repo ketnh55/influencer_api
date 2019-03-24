@@ -1,4 +1,4 @@
-# User login message api   
+# User Update Information api   
 
 | attribute | value |
 |-----------|-------|
@@ -10,11 +10,11 @@
 
 ## 1. Overview 
 
-- A API allow user login to system by SNS.
+- An API allow user update information.
 
 ## 2. Endpoint
 
-- */api/v1/user_login_api*
+- */api/v1/user_update_info_api*
 
 ## 3. Method
 
@@ -24,7 +24,14 @@
 
 name  | description| format | type | range | required
 --- | ---| ---| ---|---|---
-jwt|jwt of user|-|string|-|true 
+date_of_birth|date of birth of user|-|string|-|false
+country|country of user|-|string|-|false 
+gender|gender|-|string|-|false
+location|location|-|string|-|false 
+email|email|-|string|-|false
+avatar|avatar|-|string|-|false
+description|description|-|string|-|false
+user_type|user type|-|string|-|false  
 
 
 ## 5.Example API Call
@@ -37,7 +44,7 @@ jwt|jwt of user|-|string|-|true
     - POST param
         - jwt : '"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI0LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3YxL3VzZXJfbG9naW5fYXBpIiwiaWF0IjoxNTUzNDE5OTM2LCJleHAiOjE1NTM0MjM1MzYsIm5iZiI6MTU1MzQxOTkzNiwianRpIjoib1hDOE41UW12cEtBNUtCZSJ9.GPau62lF2scfzub6cHmlQx40yxjxTlmSKs1W7G9F1ws',        
         
-- Url : *http://domain_name/api/v1/user_login_api/*
+- Url : *http://domain_name/api/v1/user_update_info_api/*
 
 ## 6. Diagram 
 
@@ -53,11 +60,11 @@ jwt|jwt of user|-|string|-|true
             + Jwt token is not valid
             + Jwt user not found
 
-- Step 2 : return the result allow access or not
+- Step 2 : update information of user
 
 ## 8. Output
 
-- Allow user access or not  
+- Update success or not 
 
 ## 9. Example Response 
 
@@ -69,27 +76,8 @@ jwt|jwt of user|-|string|-|true
     
     ```
     {
-    "allow_access": "true"
-    "user": {
-                "id": 24,
-                "username": "1111",
-                "full_name": null,
-                "date_of_birth": null,
-                "gender": null,
-                "country": null,
-                "location": null,
-                "email": "abcdfdsafdsafd@xyz.com456rrrr4fhtrthye556",
-                "avatar": null,
-                "description": null,
-                "created_at": "2019-03-20 17:12:57",
-                "updated_at": "2019-03-20 17:12:57",
-                "deleted_at": null,
-                "last_login": null,
-                "ip": null,
-                "is_active": null,
-                "user_type": 1
-            }            
-    }
+        "update_user_info": "success"
+    }    
     ```
     
     + Failed: 

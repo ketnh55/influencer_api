@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Ajax;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -34,12 +35,14 @@ class Kernel extends HttpKernel
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
+
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
         'api' => [
             'throttle:60,1',
             'bindings',
+            \App\Http\Middleware\Ajax::class,
         ],
     ];
 
@@ -60,8 +63,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'jwt.auth' => Tymon\JWTAuth\Middleware\GetUserFromToken::class,
-        'jwt.refresh' => Tymon\JWTAuth\Middleware\RefreshToken::class,
+        'jwt.auth' => \App\Http\Middleware\JwtAuthentication::class,
     ];
 
     /**
