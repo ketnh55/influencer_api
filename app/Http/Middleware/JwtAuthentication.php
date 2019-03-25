@@ -58,7 +58,7 @@ class JwtAuthentication
         }
 
         if (! $user) {
-            return $this->events->dispatch('tymon.jwt.user_not_found', 'user_not_found', 404);
+            return $this->respond('tymon.jwt.user_not_found', 'user_not_found', 404);
         }
 
         $this->events->dispatch('tymon.jwt.valid', $user);
