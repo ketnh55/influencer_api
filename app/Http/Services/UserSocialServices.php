@@ -36,7 +36,6 @@ class UserSocialServices
         $user = User::create([
             'email'=>$request->get('email'),
             'username'=>$request->get('name'),
-            'password'=>Hash::make($request->get('email').$request->get('name')),
         ]);
         // create social user with main user
         $acc = new UserSocial([
