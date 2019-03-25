@@ -33,8 +33,7 @@ class UserRegisterRequest extends FormRequest
             'social_type' => 'required|numeric|min:1|max:4',
             'link' => 'required',
             'access_token' => 'required',
-            'account_id' => 'required',
-            'user_type' => 'required|numeric|min:1|max:2'
+            'account_id' => 'required|digits_between:1,20',
         ];
     }
 }
