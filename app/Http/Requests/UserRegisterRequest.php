@@ -31,8 +31,8 @@ class UserRegisterRequest extends FormRequest
             'email' => 'string|email|max:255',
             'name' => 'string',
             'social_type' => 'required|numeric|min:1|max:4',
-            'link' => 'required',
-            'sns_access_token' => 'required',
+            'link' => 'string',
+            'sns_access_token' => 'string',
             'sns_account_id' => 'required|digits_between:1,20',
         ];
     }
