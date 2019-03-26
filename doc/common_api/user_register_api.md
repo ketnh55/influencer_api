@@ -25,13 +25,12 @@
 
 name  | description| format | type | range | required
 --- | ---| ---| ---|---|---
-email|email of user|-|string|-|true 
-name|username|-|string|-|true
+email|email of user|-|string|-|false 
+name|username|-|string|-|false
 sns_account_id|sns_account_id|-|string|-|true
 social_type|1:facebook, 2:twitter, 3:instagram, 4:youtube|-|int|from 1 to 4|true
-sns_access_token|access token of sns|-|string|-|true
-link|link to sns page|-|string|-|true
-user_type|1: influencer, 2: marketer|-|string|-|true
+sns_access_token|access token of sns|-|string|-|false
+link|link to sns page|-|string|-|false
 
 ## 5.Example API Call
 
@@ -48,7 +47,6 @@ user_type|1: influencer, 2: marketer|-|string|-|true
         - social_type: '2',
         - sns_access_token: '3xyzljfdsajldsjaf2354%fdajasdf.fdaljkfda',
         - link: 'https://twitter.com/Cuong_dep_trai89625808'
-        - user_type: '2'
         
 - Url : *http://domain_name/api/v1/user_register_api/*
 
