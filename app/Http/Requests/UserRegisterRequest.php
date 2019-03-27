@@ -28,12 +28,12 @@ class UserRegisterRequest extends FormRequest
     {
         return [
             //
-            'email' => 'string|email|max:255',
-            'name' => 'string',
+            'email' => 'sometimes|required|string|email|max:255',
+            'name' => 'sometimes|required|string',
             'social_type' => 'required|numeric|min:1|max:4',
-            'link' => 'string',
-            'sns_access_token' => 'string',
-            'sns_account_id' => 'required|digits_between:1,20',
+            'link' => 'sometimes|required|string',
+            'sns_access_token' => 'sometimes|required|string',
+            'sns_account_id' => 'required|digits_between:1,30',
         ];
     }
 }

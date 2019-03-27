@@ -28,7 +28,7 @@ class UserSocialServices
         {
             $user = $userSocial->user;
             $user = User::with('user_socials')->findOrFail($user->id);
-            $user->user_type !== null ? $user->require_update_info = 'false' :$user->require_update_info = 'true';
+
             return $user;
         }
 
@@ -48,7 +48,6 @@ class UserSocialServices
         $acc->user()->associate($user);
         $acc->save();
         $user = User::with('user_socials')->findOrFail($user->id);
-        $user->require_update_info = 'true';
         return $user;
     }
 
