@@ -6,7 +6,6 @@ use App\Http\Services\UserSocialServices;
 use App\Http\Controllers\Controller;
 use JWTFactory;
 use JWTAuth;
-use App\User;
 use Validator;
 use Response;
 use Illuminate\Http\Request;

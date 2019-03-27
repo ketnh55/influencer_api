@@ -17,7 +17,7 @@ class Ajax
     {
         if(!$request->ajax())
         {
-            abort(404);
+            return response()->json(["error" => "Please call with an ajax request"]);
         }
         return $next($request);
     }
