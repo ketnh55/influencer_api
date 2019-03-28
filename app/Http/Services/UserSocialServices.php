@@ -35,13 +35,13 @@ class UserSocialServices
         //if not
         $user = User::create([
             'email'=>$request->get('email'),
-            'username'=>$request->get('name'),
+            'username'=>$request->get('username'),
         ]);
         // create social user with main user
         $acc = new UserSocial([
             'flatform_id' => $request->get('sns_account_id'),
             'social_type' => $request->get('social_type'),
-            'access_token' => $request->get('sns_access_token'),
+            'sns_access_token' => $request->get('sns_access_token'),
             'email' => $request->get('email'),
             'link' => $request->get('link'),
         ]);

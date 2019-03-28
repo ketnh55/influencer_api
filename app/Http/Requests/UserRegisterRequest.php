@@ -29,7 +29,7 @@ class UserRegisterRequest extends FormRequest
         return [
             //
             'email' => 'sometimes|required|string|email|max:255',
-            'name' => 'sometimes|required|string',
+            'username' => 'sometimes|required|string',
             'social_type' => 'required|numeric|min:1|max:4',
             'link' => 'sometimes|required|string',
             'sns_access_token' => 'sometimes|required|string',
