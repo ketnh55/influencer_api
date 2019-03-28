@@ -41,7 +41,7 @@ link|link to sns page|-|string|-|false
 - Body: 
     - POST param
         - email : 'abcd_xyz@gmail.com',
-        - name: 'kelvin',
+        - username: 'kelvin',
         - password: '',
         - sns_account_id: '89625808',
         - social_type: '2',
@@ -123,7 +123,7 @@ link|link to sns page|-|string|-|false
                         "updated_at": "2019-03-21 15:03:27",
                         "deleted_at": null,
                         "social_type": "3",
-                        "access_token": null,
+                        "sns_access_token": null,
                         "user_id": "2",
                         "extra_data": null,
                         "flatform_id": "111111111111111"
