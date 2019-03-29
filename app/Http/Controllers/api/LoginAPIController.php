@@ -8,6 +8,7 @@ use JWTFactory;
 use JWTAuth;
 use Validator;
 use Response;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRegisterRequest;
 
@@ -59,8 +60,8 @@ class LoginAPIController extends Controller
     public function user_login_api(Request $request)
     {
         $user = JWTAuth::toUser($request->token);
+        $user = User::with('user_socials')->findOrFail($user->id);
         $user->user_type !== null ? $user->require_update_info = 'false' :$user->require_update_info = 'true';
-        //$user->allow_access_user = true;
         return response()->json(['allow_access_user' => true, 'user' => $user]);
     }
     public function user_update_info_api(Request $request)

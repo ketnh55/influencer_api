@@ -23,7 +23,7 @@ class UserSocialServices
         /*
          * Check if user exists or not
          * */
-        $userSocial = UserSocial::where(['flatform_id' => $request->get('sns_account_id'), 'social_type'=>$request->get('social_type')])->first();
+        $userSocial = UserSocial::where(['platform_id' => $request->get('sns_account_id'), 'social_type'=>$request->get('social_type')])->first();
         if($userSocial)
         {
             $user = $userSocial->user;
@@ -39,7 +39,7 @@ class UserSocialServices
         ]);
         // create social user with main user
         $acc = new UserSocial([
-            'flatform_id' => $request->get('sns_account_id'),
+            'platform_id' => $request->get('sns_account_id'),
             'social_type' => $request->get('social_type'),
             'sns_access_token' => $request->get('sns_access_token'),
             'email' => $request->get('email'),
