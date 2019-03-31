@@ -26,7 +26,7 @@
 name  | description| format | type | range | required
 --- | ---| ---| ---|---|---
 email|email of user|-|string|-|false 
-name|username|-|string|-|false
+username|username|-|string|-|false
 sns_account_id|sns_account_id|-|string|-|true
 social_type|1:facebook, 2:twitter, 3:instagram, 4:youtube|-|int|from 1 to 4|true
 sns_access_token|access token of sns|-|string|-|false
