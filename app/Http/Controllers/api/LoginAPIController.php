@@ -6,9 +6,9 @@ use App\Http\Services\UserSocialServices;
 use App\Http\Controllers\Controller;
 use JWTFactory;
 use JWTAuth;
-use App\User;
 use Validator;
 use Response;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRegisterRequest;
 
@@ -47,30 +47,32 @@ class LoginAPIController extends Controller
             return response()->json(['error' => $e->getMessage()]);
         }
         $token = JWTAuth::fromUser($user);
-        return response()->json([compact('token'), compact('user')]);
+        $user->user_type !== null ? $user->require_update_info = 'false' :$user->require_update_info = 'true';
+        return response()->json(['token'=>$token, 'user'=>$user]);
     }
 
     public function get_user_info(Request $request)
     {
         $user = JWTAuth::toUser($request->token);
-        return response()->json(['data' => $user]);
+        return response()->json(compact('user'));
     }
 
     public function user_login_api(Request $request)
     {
         $user = JWTAuth::toUser($request->token);
+        $user = User::with('user_socials')->findOrFail($user->id);
         $user->user_type !== null ? $user->require_update_info = 'false' :$user->require_update_info = 'true';
-        return response()->json(['user' => $user, 'allow_access_user' => true]);
+        return response()->json(['allow_access_user' => true, 'user' => $user]);
     }
     public function user_update_info_api(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'date_of_birth' => 'date_format:Y-m-d',
-            'gender' => 'string',
-            'country' => 'string',
-            'location' => 'string',
-            'description' => 'string',
-            'user_type' => 'numeric|min:1|max:2'
+            'date_of_birth' => 'sometimes|required|date_format:Y-m-d',
+            'gender' => 'sometimes|required|string',
+            'country' => 'sometimes|required|string',
+            'location' => 'sometimes|required|string',
+            'description' => 'sometimes|required|string',
+            'user_type' => 'sometimes|required|numeric|min:1|max:2'
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors());

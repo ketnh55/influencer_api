@@ -23,32 +23,31 @@ class UserSocialServices
         /*
          * Check if user exists or not
          * */
-        $userSocial = UserSocial::where(['flatform_id' => $request->get('sns_account_id'), 'social_type'=>$request->get('social_type')])->first();
+        $userSocial = UserSocial::where(['platform_id' => $request->get('sns_account_id'), 'social_type'=>$request->get('social_type')])->first();
         if($userSocial)
         {
             $user = $userSocial->user;
             $user = User::with('user_socials')->findOrFail($user->id);
-            $user->user_type !== null ? $user->require_update_info = 'false' :$user->require_update_info = 'true';
+
             return $user;
         }
 
         //if not
         $user = User::create([
             'email'=>$request->get('email'),
-            'username'=>$request->get('name'),
+            'username'=>$request->get('username'),
         ]);
         // create social user with main user
         $acc = new UserSocial([
-            'flatform_id' => $request->get('sns_account_id'),
+            'platform_id' => $request->get('sns_account_id'),
             'social_type' => $request->get('social_type'),
-            'access_token' => $request->get('sns_access_token'),
+            'sns_access_token' => $request->get('sns_access_token'),
             'email' => $request->get('email'),
             'link' => $request->get('link'),
         ]);
         $acc->user()->associate($user);
         $acc->save();
         $user = User::with('user_socials')->findOrFail($user->id);
-        $user->require_update_info = 'true';
         return $user;
     }
 

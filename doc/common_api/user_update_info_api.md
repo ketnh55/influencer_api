@@ -38,12 +38,20 @@ user_type|user type|-|string|-|false
 
 - Method : POST
 
-- Header: X-Requested-With: XMLHttpRequest
+- Header: 
 
-- Body: 
-    - POST param
-        - jwt : '"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI0LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3YxL3VzZXJfbG9naW5fYXBpIiwiaWF0IjoxNTUzNDE5OTM2LCJleHAiOjE1NTM0MjM1MzYsIm5iZiI6MTU1MzQxOTkzNiwianRpIjoib1hDOE41UW12cEtBNUtCZSJ9.GPau62lF2scfzub6cHmlQx40yxjxTlmSKs1W7G9F1ws',        
+    - X-Requested-With: XMLHttpRequest
         
+    - Authorization : '"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI0LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3YxL3VzZXJfbG9naW5fYXBpIiwiaWF0IjoxNTUzNDE5OTM2LCJleHAiOjE1NTM0MjM1MzYsIm5iZiI6MTU1MzQxOTkzNiwianRpIjoib1hDOE41UW12cEtBNUtCZSJ9.GPau62lF2scfzub6cHmlQx40yxjxTlmSKs1W7G9F1ws',        
+- Body:
+    - POST param
+        - date_of_birth : '2000-11-12' //Y-M-d (required correct format)
+        - country: 'vietnam',
+        - gender: 'male',
+        - location: 'hanoi',
+        - email: 'cuong-nguyen@gmail.com',
+        - avatar: 'https://twitter.com/Cuong_dep_trai8962580.png',
+        - link: 'https://twitter.com/Cuong_dep_trai89625808'        
 - Url : *http://domain_name/api/v1/user_update_info_api/*
 
 ## 6. Diagram 

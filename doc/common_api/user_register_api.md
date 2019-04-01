@@ -26,7 +26,7 @@
 name  | description| format | type | range | required
 --- | ---| ---| ---|---|---
 email|email of user|-|string|-|false 
-name|username|-|string|-|false
+username|username|-|string|-|false
 sns_account_id|sns_account_id|-|string|-|true
 social_type|1:facebook, 2:twitter, 3:instagram, 4:youtube|-|int|from 1 to 4|true
 sns_access_token|access token of sns|-|string|-|false
@@ -41,7 +41,7 @@ link|link to sns page|-|string|-|false
 - Body: 
     - POST param
         - email : 'abcd_xyz@gmail.com',
-        - name: 'kelvin',
+        - username: 'kelvin',
         - password: '',
         - sns_account_id: '89625808',
         - social_type: '2',
@@ -123,7 +123,7 @@ link|link to sns page|-|string|-|false
                         "updated_at": "2019-03-21 15:03:27",
                         "deleted_at": null,
                         "social_type": "3",
-                        "access_token": null,
+                        "sns_access_token": null,
                         "user_id": "2",
                         "extra_data": null,
                         "flatform_id": "111111111111111"
