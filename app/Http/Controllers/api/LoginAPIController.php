@@ -81,12 +81,12 @@ class LoginAPIController extends Controller
         {
             return response()->json(['error' => 'User type was existed']);
         }
-        $user->date_of_birth = $request->get('date_of_birth');
-        $user->gender = $request->get('gender');
-        $user->country = $request->get('country');
-        $user->location = $request->get('location');
-        $user->description = $request->get('description');
-        $user->user_type = $request->get('user_type');
+        $user->date_of_birth = $request->get('date_of_birth')==null?$user->date_of_birth:$request->get('date_of_birth');
+        $user->gender = $request->get('gender')==null?$user->gender:$request->get('gender');
+        $user->country = $request->get('country')==null?$user->country:$request->get('country');
+        $user->location = $request->get('location')==null?$user->location:$request->get('location');
+        $user->description = $request->get('description')==null?$user->description:$request->get('description');
+        $user->user_type = $request->get('user_type')==null?$user->user_type:$request->get('user_type');
         $user->save();
         return response()->json(['update_user_info' => 'Success']);
     }
