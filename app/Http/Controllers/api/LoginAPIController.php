@@ -72,7 +72,10 @@ class LoginAPIController extends Controller
             'country' => 'sometimes|required|string',
             'location' => 'sometimes|required|string',
             'description' => 'sometimes|required|string',
-            'user_type' => 'sometimes|required|numeric|min:1|max:2'
+            'user_type' => 'sometimes|required|numeric|min:1|max:2',
+            'username' => 'sometimes|required|string',
+            'email' => 'sometimes|required|string|email|max:255',
+            'avatar' => 'sometimes|required|string',
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors());
@@ -89,6 +92,9 @@ class LoginAPIController extends Controller
         $user->location = $request->get('location')==null?$user->location:$request->get('location');
         $user->description = $request->get('description')==null?$user->description:$request->get('description');
         $user->user_type = $request->get('user_type')==null?$user->user_type:$request->get('user_type');
+        $user->username = $request->get('username')==null?$user->user_type:$request->get('username');
+        $user->email = $request->get('email')==null?$user->user_type:$request->get('email');
+        $user->avatar = $request->get('avatar')==null?$user->user_type:$request->get('avatar');
         $user->save();
         return response()->json(['update_user_info' => 'Success']);
     }
