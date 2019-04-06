@@ -34,6 +34,7 @@ class UserRegisterRequest extends FormRequest
             'link' => 'sometimes|required|string',
             'sns_access_token' => 'sometimes|required|string',
             'sns_account_id' => 'required|digits_between:1,30',
+            'avatar' => 'sometimes|required|string',
         ];
     }
 }

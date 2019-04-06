@@ -8,7 +8,7 @@ class UserSocial extends Model
 {
     //
     protected $table = 'social_users';
-    protected $fillable = ['user_id', 'social_type','sns_access_token', 'email', 'link', 'platform_id'];
+    protected $fillable = ['user_id', 'social_type','sns_access_token', 'email', 'link', 'platform_id', 'username', 'avatar'];
 
     public function user()
     {

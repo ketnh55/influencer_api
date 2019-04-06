@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Model\Category;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,7 +21,7 @@ class User extends Authenticatable
         'country', 'location', 'avatar', 'description', 'last_login', 'ip', 'is_active', 'user_type', 'id'
     ];
 
-    protected  $table = 'users';
+    protected $table = 'users';
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -42,5 +43,10 @@ class User extends Authenticatable
     public function user_socials()
     {
         return $this->hasMany('App\Model\UserSocial');
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'user_categories');
     }
 }

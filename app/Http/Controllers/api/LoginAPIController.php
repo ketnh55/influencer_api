@@ -57,13 +57,6 @@ class LoginAPIController extends Controller
         return response()->json(compact('user'));
     }
 
-    public function user_login_api(Request $request)
-    {
-        $user = JWTAuth::toUser($request->token);
-        $user = User::with('user_socials')->findOrFail($user->id);
-        $user->user_type !== null ? $user->require_update_info = 'false' :$user->require_update_info = 'true';
-        return response()->json(['allow_access_user' => true, 'user' => $user]);
-    }
     public function user_update_info_api(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -82,22 +75,7 @@ class LoginAPIController extends Controller
             return response()->json($validator->errors());
         }
         $user = JWTAuth::toUser($request->token);
-
-        if ($user->user_type !== null && $request->get('user_type') !== null)
-        {
-            return response()->json(['error' => 'User type was existed']);
-        }
-        $user->date_of_birth = $request->get('date_of_birth')==null?$user->date_of_birth:$request->get('date_of_birth');
-        $user->gender = $request->get('gender')==null?$user->gender:$request->get('gender');
-        $user->country = $request->get('country')==null?$user->country:$request->get('country');
-        $user->location = $request->get('location')==null?$user->location:$request->get('location');
-        $user->description = $request->get('description')==null?$user->description:$request->get('description');
-        $user->user_type = $request->get('user_type')==null?$user->user_type:$request->get('user_type');
-        $user->username = $request->get('username')==null?$user->username:$request->get('username');
-        $user->email = $request->get('email')==null?$user->email:$request->get('email');
-        $user->avatar = $request->get('avatar')==null?$user->avatar:$request->get('avatar');
-        $user->category = $request->get('category')==null?$user->category:$request->get('category');
-        $user->save();
-        return response()->json(['update_user_info' => 'Success']);
+        $ret = $this->socialAccountServices->updateUserInfo($user, $request);
+        return $ret;
     }
 }
