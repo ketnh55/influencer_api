@@ -55,6 +55,7 @@ class LoginAPIController extends Controller
     {
         $user = JWTAuth::toUser($request->token);
         $user = User::with('user_socials')->findOrFail($user->id);
+        $user->user_type !== null ? $user->require_update_info = 'false' :$user->require_update_info = 'true';
         return response()->json(["allow_access"=>"true", 'user' => $user]);
     }
 
