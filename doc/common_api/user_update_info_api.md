@@ -32,7 +32,9 @@ email|email|-|string|-|false
 avatar|avatar|-|string|-|false
 description|description|-|string|-|false
 user_type|user type|-|string|-|false  
-
+username|username|-|string|-|false
+avatar|avatar user|-|string|-|false
+category|category of user|-|string|-|false
 
 ## 5.Example API Call
 
@@ -50,8 +52,13 @@ user_type|user type|-|string|-|false
         - gender: 'male',
         - location: 'hanoi',
         - email: 'cuong-nguyen@gmail.com',
+        - description: 'nothing is impossible',
         - avatar: 'https://twitter.com/Cuong_dep_trai8962580.png',
-        - link: 'https://twitter.com/Cuong_dep_trai89625808'        
+        - username: 'thangdeptrai'
+        - category: 'sport, drinking, football'
+        - link: 'https://twitter.com/Cuong_dep_trai89625808'
+        - category: 'https://twitter.com/Cuong_dep_trai89625808'
+        - user_type: '1'        
 - Url : *http://domain_name/api/v1/user_update_info_api/*
 
 ## 6. Diagram 
@@ -100,4 +107,5 @@ user_type|user type|-|string|-|false
 
 ## 10. Exception
 
-- Return error message if jwt token is not valid 
+- Return error message if jwt token is not valid
+- Return error message if input data is not correct 
