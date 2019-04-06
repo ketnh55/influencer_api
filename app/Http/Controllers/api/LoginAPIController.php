@@ -51,7 +51,7 @@ class LoginAPIController extends Controller
         return response()->json(['token'=>$token, 'user'=>$user]);
     }
 
-    public function get_user_info(Request $request)
+    public function user_login_api(Request $request)
     {
         $user = JWTAuth::toUser($request->token);
         return response()->json(compact('user'));
