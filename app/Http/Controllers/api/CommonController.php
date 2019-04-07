@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers\api;
 
+use App\Model\Category;
 use JWTFactory;
 use JWTAuth;
 use App\Http\Controllers\Controller;
@@ -21,5 +22,12 @@ class CommonController extends  Controller
         $user = JWTAuth::toUser($request->token);
         $user = User::with('user_socials')->findOrFail($user->id);
         return response()->json(compact('user'));
+    }
+
+    public function get_category_info(Request $request)
+    {
+        JWTAuth::toUser($request->token);
+        $category = Category::all();
+        return response()->json(compact('category'));
     }
 }

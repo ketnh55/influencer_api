@@ -20,4 +20,5 @@ Route::prefix('v1')->group(function(){
     Route::post('/user_login_api', 'api\LoginAPIController@user_login_api')->middleware('jwt.auth');
     Route::post('/user_update_info_api', 'api\LoginAPIController@user_update_info_api')->middleware('jwt.auth');
     Route::post('/link_user_to_sns_api', 'api\SnsController@link_to_sns')->middleware('jwt.auth');
+    Route::get('/get_category_api', 'api\CommonController@get_category_info')->middleware('jwt.auth');
 });
