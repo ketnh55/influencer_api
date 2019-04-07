@@ -100,7 +100,7 @@ class UserSocialServices
         }
 
         //check if sns account was linked to another account
-        $user_socials = UserSocial::where(['platform_id'=>$request->get('sns_account_id')], ['social_type'=>$request->get('social_type')])->count();
+        $user_socials = UserSocial::where(['platform_id'=>$request->get('sns_account_id'), 'social_type'=>$request->get('social_type')])->count();
         if($user_socials > 0)
         {
             return response()->json(['error'=>'user was existed']);
